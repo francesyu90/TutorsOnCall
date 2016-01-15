@@ -1,12 +1,16 @@
 <template name="profile">
 	<div class="container marginTop">
-		{{> createProfileModal}}
+		{{#if checkProfileExist}}
+			{{> profileTemplate}}
+		{{else}}
+			{{> createProfileModal}}
+		{{/if}}
 	</div>
 </template>
 
 <template name="createProfileModal">
 	<!-- Trigger the modal with a button -->
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create Profile</button>
+	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Create Profile</button>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
   		<div class="modal-dialog">
@@ -17,12 +21,17 @@
         			<h4 class="modal-title">Create Profile</h4>
       			</div>
       			<div class="modal-body">
-        			<form name="createProfileForm">
+        			<form id="createProfileForm" class="js-create-profile">
         				{{> createProfileForm}}
         			</form>
       			</div>
       			<div class="modal-footer">
-        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      				<div class="btn-group" role="group" aria-label="...">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			{{#if checkStatus}}
+	        			<button type="submit" class="btn btn-primary" form="createProfileForm">Submit</button>
+	        			{{/if}}
+        			</div>
       			</div>
     		</div>
 		</div>
@@ -33,16 +42,15 @@
 	{{#if checkStatus}}
 		<div class="form-group">
   			<label for="area">Area:</label>
-  			<input type="text" class="form-control" id="area">
+  			<input type="text" class="form-control" id="area" placeholder="eg. Vancouver">
 		</div>
 		<div class="form-group">
   			<label for="hrRate">Hourly Rate:</label>
-  			<input type="text" class="form-control" id="hrRate">
+  			<input type="text" class="form-control" id="hrRate" placeholder="eg. $34.50">
 		</div>
 		<div class="form-group">
 			<label for="subjects">Subjects of Specialization:</label>
 		  	<select id="subjects" class="form-control js-choose-subject" multiple>
-	  			<option value="none">Please select from the following: </option>
 	  			{{#each subjects}}
 					<option value="{{name}}">{{name}}</option>
 				{{/each}}
@@ -66,6 +74,40 @@
 			</select>
 		</div>
 	{{/if}}
+</template>
+
+<template name="profileTemplate">
+	<div class="panel panel-default marginTop">
+  		<!-- Default panel contents -->
+  		<div class="panel-heading">Personal Profile</div>
+		<!-- Table -->
+		{{#with profile}}
+  		<table class="table table-striped table-bordered">
+    		<tbody>
+    			<tr>
+	    			<th>Name</th>
+	    			<td>{{name}}</td>
+	    		</tr>
+	    		<tr>
+	    			<th>Area</th>
+	    			<td>{{area}}</td>
+	    		</tr>
+	    		<tr>
+	    			<th>Hourly Rate</th>
+	    			<td>{{hrRate}}</td>
+	    		</tr>
+	    		<tr>
+	    			<th>Subjects of Specialization</th>
+	    			<td>{{subjects}}</td>
+	    		</tr>
+	    		<tr>
+	    			<th>Teaching Experience</th>
+	    			<td>{{exprience}}</td>
+	    		</tr>
+    		</tbody>
+  		</table>
+  		{{/with}}
+	</div>
 </template>
 
 
