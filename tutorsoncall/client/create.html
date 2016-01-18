@@ -1,14 +1,19 @@
 <template name="create">
 	{{#if currentUser}}
 		<div class="container marginTop">
-			{{> createProfileModal}}
+			{{#if checkProfileExist}}
+				{{> createProfileAlert}}
+			{{else}}
+				{{> createProfileModal}}
+			{{/if}}
 		</div>
+	{{else}}
 	{{/if}}
 </template>
 
 <template name="createProfileModal">
 	<!-- Trigger the modal with a button -->
-	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Create Profile</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Profile</button>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
   		<div class="modal-dialog">
@@ -36,6 +41,14 @@
 	</div>
 </template>
 
+<template name="createProfileAlert">
+	<div class="alert alert-danger" role="alert">
+  		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  		<span class="sr-only">Error:</span>
+  		You have already created a profile!
+	</div>
+</template>
+
 <template name="createProfileForm">
 	{{#if checkStatus}}
 		<div class="form-group">
@@ -59,7 +72,7 @@
   			<textarea class="form-control" rows="3" id="exprience"></textarea>
 		</div>
 	{{else}}
-		<div class="alert alert-info" role="alert" id="proAlert">
+		<div class="alert alert-warning" role="alert" id="proAlert">
 			Only tutors are required to create profiles!
 		</div>
 		<div class="form-group">

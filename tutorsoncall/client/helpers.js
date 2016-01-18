@@ -108,6 +108,22 @@ Template.filter.helpers({
 
 });
 
+Template.create.helpers({
+
+	checkProfileExist:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		var user = TutorProfiles.findOne({userId:userId});
+		if(!user){
+			return false;
+		}
+		return true;
+	}
+
+});
+
 
 
 
