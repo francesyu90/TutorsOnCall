@@ -120,11 +120,17 @@ Template.searchBox.helpers({
 Template.filter.helpers({
 
 	tutors:function(){
-		if (!Session.get("hrRate")){
+		if (!Session.get("hrRate") && (!Session.get("upvote"))){
 			return TutorProfiles.find({});
 		}else{
 			var hrRate = Number(Session.get("hrRate"));
-			return TutorProfiles.find({hrRate: {$lte:hrRate}});
+			var upvote = Number(Session.get("upvote"));
+			return TutorProfiles.find({
+				$or: [
+					{hrRate: {$lte:hrRate}},
+					{upvote: {$gte:upvote}}
+				]
+			});
 		}
 	}
 

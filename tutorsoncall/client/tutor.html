@@ -41,12 +41,29 @@
 			    		<th>Teaching Experience</th>
 			    		<td>{{exprience}}</td>
 			   		</tr>
+			   		<tr class="text-info">
+			   			<th>
+			   				<label>
+			   					Likes
+			   				</label>
+			   			</th>
+			   			<td>
+			   				<label>
+			   					{{upvote}}
+			   				</label>
+			   			</td>
+			   		</tr>
 		    	</tbody>
 		  	</table>
 	  	</div>
 	</div>
 	{{#if currentUser}}
-		{{> sendMessagetoTutor}}
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default js-upvote" id="u{{userId}}">
+				<span class="glyphicon glyphicon-thumbs-up"></span> like
+			</button>
+			{{> sendMessagetoTutor}}
+		</div>
 	{{/if}}
 </template>
 

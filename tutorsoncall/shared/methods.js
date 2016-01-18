@@ -48,6 +48,36 @@ Meteor.methods({
 			return;
 		}
 		Messages.remove({_id:messageId});
+	},
+	upvoteTutor:function(tutorId){
+		if(!this.userId){
+			return;
+		}
+		var profile = TutorProfiles.findOne({userId:tutorId});
+		if(!profile){
+			return;
+		}
+		var upvote = profile.upvote + 1;
+		TutorProfiles.update({userId:tutorId},{$set: {upvote:upvote}});
 	}
 
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

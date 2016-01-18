@@ -6,19 +6,32 @@
 
 <template name="filter">
    <div class="row">
-   		<div class="col-md-6">
+   		<div class="col-md-4">
    			<a type="button" class="btn btn-default" href="/tutors">
    				<span class="glyphicon glyphicon-chevron-left"></span>
    				Return to Tutors page
    			</a>
    		</div>
-   		<div class="col-md-6">
+   		<div class="col-md-4">
    			 <form class="js-filter-hrRate">
    			 	<label for="hrRate">
 			    	Filter by hourly rate only (at most): 
 			    </label>
 			    <br>
 			    <input id="hrRate" type="text"> dollars
+			    &nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="submit" class="btn btn-default btn-sm">
+			    	Go
+			    </button>
+   			 </form>
+   		</div>
+   		<div class="col-md-4">
+   			 <form class="js-filter-upvote">
+   			 	<label for="upvote">
+			    	Filter by ratings (at least): 
+			    </label>
+			    <br>
+			    <input id="upvote" type="text"> likes
 			    &nbsp;&nbsp;&nbsp;&nbsp;
 			    <button type="submit" class="btn btn-default btn-sm">
 			    	Go
@@ -43,7 +56,7 @@
 		    		<th>Name</th>
 		    		<th>Area</th>
 		    		<th>Hourly Rate</th>
-		    		<th>Subjects of Specialization</th>
+		    		<th>Likes</th>
 		    	</tr>
 	    	</thead>
 	    	<tbody>
@@ -54,7 +67,7 @@
 	    				</td>
 	    				<td>{{area}}</td>
 	    				<td>${{hrRate}}</td>
-	    				<td>{{subjects}}</td>
+	    				<td>{{upvote}}</td>
 	    			</tr>
 	    		{{/each}}
 	    	</tbody>

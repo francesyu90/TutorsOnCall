@@ -101,6 +101,11 @@ Template.filter.events({
 		event.preventDefault();
 		var hrRate = event.target.hrRate.value;
 		Session.set("hrRate", hrRate);
+	},
+	"submit .js-filter-upvote":function(event){
+		event.preventDefault();
+		var upvote = event.target.upvote.value;
+		Session.set("upvote", upvote);
 	}
 
 });
@@ -184,6 +189,19 @@ Template.sendMessagefromTutor.events({
 			status:"new"
 		}
 		Meteor.call("createMessage", message);
+	}
+
+});
+
+Template.tutorProfile.events({
+
+	"click .js-upvote":function(event){
+		var tutorId = event.target.id.substring(1);
+		var tutor = TutorProfiles.findOne({userId:tutorId});
+		if(!tutor){
+			return;
+		}
+		Meteor.call("upvoteTutor", tutorId);
 	}
 
 });
