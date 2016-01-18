@@ -37,7 +37,10 @@
 			</li>
 		</ul>
 	</div>
-	{{> sendMessagefromTutor}}
+	{{#if isSenderAdmin from}}
+	{{else}}
+		{{> sendMessagefromTutor}}
+	{{/if}}
 </template>
 
 <template name="sendMessagefromTutor">

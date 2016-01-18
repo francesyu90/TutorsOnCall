@@ -243,6 +243,12 @@ Template.messageTemplate.helpers({
 		}
 		var usr = fixObjectKeys(user.profile);
 		return usr.firstname + " " + usr.lastname;
+	},
+	isSenderAdmin:function(from){
+		if(from != "admin"){
+			return false;
+		}
+		return true;
 	}
 
 });
