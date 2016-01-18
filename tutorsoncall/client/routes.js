@@ -46,11 +46,11 @@ Router.route("/tutors",function (){
 	});
 });
 
-Router.route("/about",function (){
+Router.route("/contact",function (){
 	this.render("navbar",{
 		to:"navbar"
 	});
-	this.render("about",{
+	this.render("contact",{
 		to:"main"
 	});
 	this.render("footer",{
