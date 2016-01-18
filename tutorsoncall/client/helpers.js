@@ -152,7 +152,7 @@ Template.messages.helpers({
 		if(!Meteor.user()){
 			return;
 		}
-		var numOfMessages = Messages.find({}).count();
+		var numOfMessages = Messages.find({to:Meteor.user()._id}).count();
 		if(numOfMessages > 0){
 			return false;
 		}
