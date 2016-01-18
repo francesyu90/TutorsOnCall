@@ -45,3 +45,20 @@ Router.route("/tutors/filter",function (){
 		to:"footer"
 	});
 });
+
+Router.route("/tutor/:id",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("tutor",{
+		to:"main",
+		data: function() {
+			var tutor = TutorProfiles.findOne({userId:this.params.id});
+			return tutor;
+		}
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
