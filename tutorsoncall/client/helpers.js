@@ -99,6 +99,18 @@ Template.navbar.helpers({
 
 });
 
+Template.tutors.helpers({
+
+	isEmpty:function(){
+		var numOfTutors = TutorProfiles.find({}).count;
+		if(numOfTutors > 0){
+			return false;
+		}
+		return true;
+	}
+
+});
+
 Template.searchBox.helpers({
 
 	tutorprofilesIndex: () => TutorProfilesIndex

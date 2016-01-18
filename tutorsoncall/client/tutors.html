@@ -1,6 +1,16 @@
 <template name="tutors">
 	<div class="container marginTop">
-		{{> searchBox}}
+		{{#if isEmpty}}
+			{{> tutorAlert}}
+		{{else}}
+			{{> searchBox}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="tutorAlert">
+	<div class="alert alert-info" role="alert">
+  		Currently, there is no registered tutor on our website. Please visit our website next time!
 	</div>
 </template>
 
