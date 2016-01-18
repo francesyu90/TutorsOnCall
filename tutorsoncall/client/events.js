@@ -94,7 +94,7 @@ Template.filter.events({
 Template.sendMessagetoTutor.events({
 
 	"submit .js-send-message-to-tutor":function(event){
-		event.preventDefault();
+		// event.preventDefault();
 		if(!Meteor.user()){
 			return;
 		}

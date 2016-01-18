@@ -27,10 +27,10 @@ Meteor.methods({
 		if(!this.userId){
 			return;
 		}
-		if(message.to == this.userId){
-			return;
-		}
-		Message.insert(message);
+		// if(message.to == this.userId){
+		// 	return;
+		// }
+		Messages.insert(message);
 	}
 
 });

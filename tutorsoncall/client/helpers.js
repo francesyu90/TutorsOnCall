@@ -86,6 +86,15 @@ Template.navbar.helpers({
 			return false;
 		}
 		return true;
+	},
+	numOfNewMessage:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		var messageCount = Messages.find({to:userId, status:"new"}).count();
+		return messageCount;
+
 	}
 
 });

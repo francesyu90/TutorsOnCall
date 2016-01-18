@@ -20,7 +20,10 @@
           <ul class="nav navbar-nav navbar-right">
             {{#if currentUser}}
               <li>
-                <a href="/messages">Messages</a>
+                <a href="/messages">
+                  Messages
+                  <span class="badge">{{numOfNewMessage}}</span>
+                </a>
               </li>
             {{/if}}
             {{#if checkProfileExist}}
