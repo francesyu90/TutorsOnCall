@@ -47,6 +47,13 @@ Template.createProfileModal.events({
 			exprience:exprience
 		}
 		Meteor.call("createNewProfile", profile);
+		var message = {
+			from:"admin",
+			message:"Thank you for creating your tutor profile on TutorsOnCall.",
+			to:userId,
+			status:"new"
+		}
+		Meteor.call("createMessage", message);
 	}
 
 });
@@ -74,7 +81,13 @@ Template.profile.events({
 			}
 			var res = Meteor.call("deleteUsr", userId);
 			if(res == 1){
-				alert("Your tutor profile has deleted successfully!");
+				var message = {
+					from:"admin",
+					message:"Your tutor profile has been successfully removed!",
+					to:userId,
+					status:"new"
+				}
+				Meteor.call("createMessage", message);
 			}
 		}
 	}

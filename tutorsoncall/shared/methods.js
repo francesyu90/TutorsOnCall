@@ -27,9 +27,9 @@ Meteor.methods({
 		if(!this.userId){
 			return;
 		}
-		// if(message.to == this.userId){
-		// 	return;
-		// }
+		if(message.to == this.userId && message.from == this.userId){
+			return;
+		}
 		Messages.insert(message);
 	}
 
