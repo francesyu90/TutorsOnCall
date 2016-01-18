@@ -49,6 +49,7 @@ Template.createProfileModal.events({
 		Meteor.call("createNewProfile", profile);
 		var message = {
 			from:"admin",
+			title:"Thank you for creating your tutor profile on TutorsOnCall.",
 			message:"Thank you for creating your tutor profile on TutorsOnCall.",
 			to:userId,
 			status:"new"
@@ -82,6 +83,7 @@ Template.profile.events({
 			var res = Meteor.call("deleteUsr", userId);
 			var message = {
 				from:"admin",
+				title:"Your tutor profile has been successfully removed!",
 				message:"Your tutor profile has been successfully removed!",
 				to:userId,
 				status:"new"
@@ -111,6 +113,7 @@ Template.sendMessagetoTutor.events({
 		}
 		var tutorId = event.target.tutorId.value;
 		var id = Meteor.user()._id;
+		var title = event.target.title.value;
 		var message = event.target.messageI.value;
 		event.target.messageI.value = "";
 		if(tutorId == id){
@@ -119,11 +122,44 @@ Template.sendMessagetoTutor.events({
 		}
 		var message = {
 			from:id,
+			title:title,
 			message:message,
 			to:tutorId,
 			status:"new"
 		}
 		Meteor.call("createMessage", message);
+	}
+
+});
+
+Template.messageList.events({
+
+	"click .js-read-message":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var messageId = event.currentTarget.id;
+		if(!Meteor.user()){
+			return;
+		}
+		var message = Messages.findOne({_id:messageId});
+		if(!message){
+			return;
+		}
+		Meteor.call("updateMessageStatus", message);
+	},
+	"change .js-delete-message":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var setDeleted = event.currentTarget.checked;
+		if(!setDeleted){
+			return;
+		}
+		var messageId = event.currentTarget.id.substring(1);
+		if(confirm("Are you sure you want to delete this message?")){
+			Meteor.call("deleteMessage", messageId);
+		}
 	}
 
 });

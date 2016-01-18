@@ -86,3 +86,42 @@ Router.route("/tutor/:id",function (){
 	});
 });
 
+Router.route("/messages",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("messages",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
+Router.route("/message/:id",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("message",{
+		to:"main",
+		data:function(){
+			var message = Messages.findOne({_id:this.params.id});
+			return message;
+		}
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<template name="message">
+	<div class="container marginTop">
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10">
+				{{> messageTemplate}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="messageTemplate">
+	<div class="panel panel-primary">
+		<div class="panel-heading">{{title}}</div>
+		<ul class="list-group">
+			<li class="list-group-item">
+				<label>From: </label>&nbsp; {{from}}
+			</li>
+			<li class="list-group-item">
+				<label>Message: </label> 
+				<p>{{message}}</p>
+			</li>
+		</ul>
+	</div>
+</template>

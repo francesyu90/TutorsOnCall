@@ -1,0 +1,35 @@
+<template name="messages">
+	<div class="container marginTop">
+		{{#if isEmpty}}
+			{{> messageAlert}}
+		{{else}}
+			{{> messageList}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="messageAlert">
+	<div class="alert alert-info alert-dismissible" role="alert">
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  		Currently, you do not have any messages.
+	</div>
+</template>
+
+<template name="messageList">
+	<ul class="list-group">
+		{{#each messages}}
+			<li class="list-group-item">
+				<input type="checkbox" class="js-delete-message" id="d{{_id}}"> &nbsp;&nbsp;&nbsp;
+				<a href="/message/{{_id}}" class="js-read-message" id="{{_id}}">
+					{{#if checkStatus _id}}
+						<b>
+							{{from}}: {{title}}
+						</b>
+					{{else}}
+						{{title}}
+					{{/if}}
+				</a>
+			</li>
+		{{/each}}
+	</ul>
+</template>

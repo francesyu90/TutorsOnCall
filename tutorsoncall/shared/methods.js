@@ -31,6 +31,23 @@ Meteor.methods({
 			return;
 		}
 		Messages.insert(message);
+	},
+	updateMessageStatus:function(message){
+		if(!this.userId){
+			return;
+		}
+		var messageId = message._id;
+		var messageI = Messages.findOne({_id:messageId});
+		if(!messageI){
+			return;
+		}
+		Messages.update({_id:messageId}, {$set: {status: "read"}});
+	},
+	deleteMessage:function(messageId){
+		if(!this.userId){
+			return;
+		}
+		Messages.remove({_id:messageId});
 	}
 
 });

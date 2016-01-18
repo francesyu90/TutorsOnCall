@@ -134,6 +134,45 @@ Template.create.helpers({
 
 });
 
+Template.messages.helpers({
+
+	isEmpty:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var numOfMessages = Messages.find({}).count();
+		if(numOfMessages > 0){
+			return false;
+		}
+		return true;
+	}
+
+});
+
+Template.messageList.helpers({
+
+	messages:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		return Messages.find({});
+	},
+	checkStatus:function(messageId){
+		if(!Meteor.user()){
+			return;
+		}
+		var message = Messages.findOne({_id:messageId});
+		if(!message){
+			return;
+		}
+		if(message.status == "read"){
+			return false;
+		}
+		return true;
+	}
+
+});
+
 
 
 
