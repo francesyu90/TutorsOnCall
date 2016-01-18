@@ -68,8 +68,42 @@ Template.profileTemplate.helpers({
 		if(!profile){
 			return;
 		}
-		console.log(profile);
 		return profile;
+	}
+
+});
+
+Template.navbar.helpers({
+
+	isStudentOrParent:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var status = user.profile.status;
+		if(status == "tutor"){
+			return false;
+		}
+		return true;
+	},
+	isProfileSet:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var status = user.profile.status;
+		if(!status){
+			return false;
+		}
+		return true;
 	}
 
 });

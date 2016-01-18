@@ -19,9 +19,18 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {{#if currentUser}}
-              <li>
-                <a href="/profile">Your Profile</a>
-              </li>
+              {{#if isProfileSet}}
+                {{#if isStudentOrParent}}
+                {{else}}
+                  <li>
+                    <a href="/profile">Your Profile</a>
+                  </li>
+                {{/if}}
+              {{else}}
+                <li>
+                  <a href="/profile">Create Profile</a>
+                </li>
+              {{/if}}
             {{/if}}
             <li>
               <p class="navbar-text">

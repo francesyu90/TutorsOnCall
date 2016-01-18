@@ -59,3 +59,46 @@ function fixObjectKeys(obj){
   	}
   	return newObj;
 }
+
+Template.profile.events({
+
+	"click .js-delete-profile":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		if(confirm("Are you sure that you want to delete your account?")){
+			var userId = Meteor.user()._id;
+			var profile = TutorProfiles.findOne({userId:userId});
+			if(!profile){
+				return;
+			}
+			var res = Meteor.call("deleteUsr", userId);
+			if(res == 1){
+				alert("Your profile has deleted successfully!");
+			}
+		}
+	}
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

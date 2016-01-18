@@ -12,6 +12,16 @@ Meteor.methods({
 			return;
 		}
 		TutorProfiles.insert(profile);
+	},
+	deleteUsr:function(userId){
+		if(!this.userId){
+			return;
+		}
+		if(this.userId != userId){
+			return;
+		}
+		var res = TutorProfiles.remove({userId:userId});
+		return res;
 	}
 
 });
