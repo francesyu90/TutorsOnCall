@@ -74,7 +74,7 @@ Template.profile.events({
 			}
 			var res = Meteor.call("deleteUsr", userId);
 			if(res == 1){
-				alert("Your profile has deleted successfully!");
+				alert("Your tutor profile has deleted successfully!");
 			}
 		}
 	}

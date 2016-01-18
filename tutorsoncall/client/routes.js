@@ -21,3 +21,15 @@ Router.route("/profile",function (){
 		to:"footer"
 	});
 });
+
+Router.route("/tutors",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("tutors",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});

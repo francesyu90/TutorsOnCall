@@ -108,6 +108,9 @@ Template.navbar.helpers({
 
 });
 
+Template.searchBox.helpers({
+	tutorprofilesIndex: () => TutorProfilesIndex
+});
 
 
 

@@ -49,8 +49,8 @@
   			<input type="text" class="form-control" id="area" placeholder="eg. Vancouver">
 		</div>
 		<div class="form-group">
-  			<label for="hrRate">Hourly Rate:</label>
-  			<input type="text" class="form-control" id="hrRate" placeholder="eg. $34.50">
+  			<label for="hrRate">Hourly Rate($):</label>
+  			<input type="text" class="form-control" id="hrRate" placeholder="eg. 34.50">
 		</div>
 		<div class="form-group">
 			<label for="subjects">Subjects of Specialization:</label>
@@ -98,7 +98,7 @@
 	    		</tr>
 	    		<tr>
 	    			<th>Hourly Rate</th>
-	    			<td>{{hrRate}}</td>
+	    			<td>${{hrRate}}</td>
 	    		</tr>
 	    		<tr>
 	    			<th>Subjects of Specialization</th>
