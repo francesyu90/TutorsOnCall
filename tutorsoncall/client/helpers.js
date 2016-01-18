@@ -167,7 +167,7 @@ Template.messageList.helpers({
 		if(!Meteor.user()){
 			return;
 		}
-		return Messages.find({});
+		return Messages.find({to:Meteor.user()._id});
 	},
 	checkStatus:function(messageId){
 		if(!Meteor.user()){
@@ -181,10 +181,80 @@ Template.messageList.helpers({
 			return false;
 		}
 		return true;
+	},
+	getName:function(userId){
+		if(!Meteor.user()){
+			return;
+		}
+		if(userId == "admin"){
+			return "admin";
+		}
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var usr = fixObjectKeys(user.profile);
+		return usr.firstname + " " + usr.lastname;
 	}
 
 });
 
+Template.sendMessagefromTutor.helpers({
+
+	getName:function(userId){
+		if(!Meteor.user()){
+			return;
+		}
+		if(userId == "admin"){
+			return "admin";
+		}
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var usr = fixObjectKeys(user.profile);
+		return usr.firstname + " " + usr.lastname;
+	},
+	substringContainsRe:function(title){
+		if(!title){
+			return;
+		}
+		var titleI = title.substring(0,2);
+		if(titleI != "Re"){
+			return false;
+		}
+		return true;
+	}
+
+});
+
+Template.messageTemplate.helpers({
+
+	getName:function(userId){
+		if(!Meteor.user()){
+			return;
+		}
+		if(userId == "admin"){
+			return "admin";
+		}
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var usr = fixObjectKeys(user.profile);
+		return usr.firstname + " " + usr.lastname;
+	}
+
+});
+
+function fixObjectKeys(obj){
+	var newObj = {};
+	for (key in obj){
+    	var key2 = key.replace("-", "");
+    	newObj[key2] = obj[key];
+  	}
+  	return newObj;
+}
 
 
 

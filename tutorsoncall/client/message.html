@@ -29,12 +29,59 @@
 		<div class="panel-heading">{{title}}</div>
 		<ul class="list-group">
 			<li class="list-group-item">
-				<label>From: </label>&nbsp; {{from}}
+				<label>From: </label>&nbsp; {{getName from}}
 			</li>
 			<li class="list-group-item">
 				<label>Message: </label> 
 				<p>{{message}}</p>
 			</li>
 		</ul>
+	</div>
+	{{> sendMessagefromTutor}}
+</template>
+
+<template name="sendMessagefromTutor">
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMessageModalI">Reply to {{getName from}}</button>
+	<!-- Modal -->
+	<div id="sendMessageModalI" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+			<!-- Modal content-->
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Send Message to {{getName from}}</h4>
+      			</div>
+      			<div class="modal-body">
+        			<form class="js-send-message-to-tutor" id="sendMessagetoTutorForm">
+        				<div class="form-group">
+        					<input class="form-control" type="hidden" id="client" value="{{from}}">
+        				</div>
+        				<div class="form-group">
+        					<!-- <label for="title">
+        						Title <small>(Maximum number of characters: 83)</small>
+        					</label> -->
+        					{{#if substringContainsRe title}}
+        						<input class="form-control" type="hidden" id="title" value="{{title}}" >
+        					{{else}}
+        						<input class="form-control" type="hidden" id="title" value="Re: {{title}}" >
+        					{{/if}}
+        				</div>
+        				<div class="form-group">
+        					<label for="messageI">
+        						Message
+        					</label>
+        					<textarea class="form-control" rows="5" id="message"></textarea>
+        				</div>
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+      				<div class="btn-group" role="group" aria-label="...">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="submit" class="btn btn-primary" form="sendMessagetoTutorForm">Submit</button>
+	        		</div>
+      			</div>
+    		</div>
+		</div>
 	</div>
 </template>

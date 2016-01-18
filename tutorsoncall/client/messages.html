@@ -27,10 +27,10 @@
 				<a href="/message/{{_id}}" class="js-read-message" id="{{_id}}">
 					{{#if checkStatus _id}}
 						<b>
-							{{from}}: {{title}}
+							{{getName from}}: {{title}}
 						</b>
 					{{else}}
-						{{title}}
+						{{getName from}}: {{title}}
 					{{/if}}
 				</a>
 			</li>

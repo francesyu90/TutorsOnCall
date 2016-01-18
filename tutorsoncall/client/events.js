@@ -44,7 +44,8 @@ Template.createProfileModal.events({
 			area:area,
 			hrRate:Number(hrRate),
 			subjects:subjects,
-			exprience:exprience
+			exprience:exprience,
+			upvote:0
 		}
 		Meteor.call("createNewProfile", profile);
 		var message = {
@@ -160,6 +161,29 @@ Template.messageList.events({
 		if(confirm("Are you sure you want to delete this message?")){
 			Meteor.call("deleteMessage", messageId);
 		}
+	}
+
+});
+
+Template.sendMessagefromTutor.events({
+
+	"submit .js-send-message-to-tutor":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var clientId = event.target.client.value;
+		var id = Meteor.user()._id;
+		var title = event.target.title.value;
+		var message = event.target.message.value;
+		event.target.message.value = "";
+		var message = {
+			from:id,
+			title:title,
+			message:message,
+			to:clientId,
+			status:"new"
+		}
+		Meteor.call("createMessage", message);
 	}
 
 });
