@@ -46,6 +46,18 @@ Router.route("/tutors",function (){
 	});
 });
 
+Router.route("/about",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("about",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
 Router.route("/tutors/filter",function (){
 	this.render("navbar",{
 		to:"navbar"

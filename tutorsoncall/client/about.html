@@ -1,0 +1,51 @@
+<template name="about">
+	<div class="container marginTop">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="page-header">
+					<h1>TutorsOnCall</h1>
+				</div>
+				<p>
+					Please use the contact form below to get in touch with us. Thanks!
+				</p>
+				{{> contactForm}}
+			</div>
+			<div class="col-md-4">
+				<div style="border-left:1px solid #d8d8d8;height:550px">
+					<div class="marginLeft paddingTop">
+						<p>
+							This is an application that helps users to find tutors in their area based on the subject, distance, price and ratings.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="contactForm">
+	<form class="js-contact-form">
+		<div class="input-group">
+			<label for="name">
+				Name
+			</label>
+			<input type="text" class="form-control" placeholder="Name" id="name">
+		</div>
+		<div class="input-group">
+			<label for="email">
+				Email
+			</label>
+			<input type="email" class="form-control" placeholder="Email" id="email">
+		</div>
+		<div class="input-group">
+			<label for="message">
+				Message
+			</label>
+			<textarea class="form-control" rows="3" id="message" cols="80"></textarea>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-primary">
+			Send
+		</button>
+	</form>
+</template>
