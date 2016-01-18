@@ -109,7 +109,22 @@ Template.navbar.helpers({
 });
 
 Template.searchBox.helpers({
+
 	tutorprofilesIndex: () => TutorProfilesIndex
+
+});
+
+Template.filter.helpers({
+
+	tutors:function(){
+		if (!Session.get("hrRate")){
+			return TutorProfiles.find({});
+		}else{
+			var hrRate = Number(Session.get("hrRate"));
+			return TutorProfiles.find({hrRate: {$lte:hrRate}});
+		}
+	}
+
 });
 
 

@@ -1,23 +1,29 @@
-<template name="tutors">
+<template name="tutorsI">
 	<div class="container marginTop">
-		{{> searchBox}}
+		{{> filter}}
 	</div>
 </template>
 
-<template name="searchBox">
+<template name="filter">
    <div class="row">
    		<div class="col-md-6">
-   			 <label>
-		    	Search (key words can be name, area or subject): 
-		    </label>
-		    <br>
-		    {{> EasySearch.Input index=tutorprofilesIndex }}
+   			<a type="button" class="btn btn-default" href="/tutors">
+   				<span class="glyphicon glyphicon-chevron-left"></span>
+   				Return to Tutors page
+   			</a>
    		</div>
    		<div class="col-md-6">
-   			<a type="button" class="btn btn-default" href="/tutors/filter">
-   				Filter by Hourly Rate
-   				<span class="glyphicon glyphicon-chevron-right"></span>
-   			</a>
+   			 <form class="js-filter-hrRate">
+   			 	<label for="hrRate">
+			    	Filter by hourly rate only (at most): 
+			    </label>
+			    <br>
+			    <input id="hrRate" type="text"> dollars
+			    &nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="submit" class="btn btn-default btn-sm">
+			    	Go
+			    </button>
+   			 </form>
    		</div>
    </div>
     <div class="marginTopI">
@@ -41,7 +47,7 @@
 		    	</tr>
 	    	</thead>
 	    	<tbody>
-	    		{{#EasySearch.Each index=tutorprofilesIndex }}
+	    		{{#each tutors}}
 	    			<tr>
 	    				<td>
 	    					<a href="/tutor/{{userId}}">{{name}}</a>
@@ -50,7 +56,7 @@
 	    				<td>${{hrRate}}</td>
 	    				<td>{{subjects}}</td>
 	    			</tr>
-	    		{{/EasySearch.Each}}
+	    		{{/each}}
 	    	</tbody>
 	    </table>
     </div>

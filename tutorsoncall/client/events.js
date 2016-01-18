@@ -42,7 +42,7 @@ Template.createProfileModal.events({
 			userId:userId,
 			name:name,
 			area:area,
-			hrRate:hrRate,
+			hrRate:Number(hrRate),
 			subjects:subjects,
 			exprience:exprience
 		}
@@ -77,6 +77,16 @@ Template.profile.events({
 				alert("Your tutor profile has deleted successfully!");
 			}
 		}
+	}
+
+});
+
+Template.filter.events({
+
+	"submit .js-filter-hrRate":function(event){
+		event.preventDefault();
+		var hrRate = event.target.hrRate.value;
+		Session.set("hrRate", hrRate);
 	}
 
 });
