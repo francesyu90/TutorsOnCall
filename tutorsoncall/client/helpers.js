@@ -75,32 +75,13 @@ Template.profileTemplate.helpers({
 
 Template.navbar.helpers({
 
-	isStudentOrParent:function(){
+	checkProfileExist:function(){
 		if(!Meteor.user()){
 			return;
 		}
 		var userId = Meteor.user()._id;
-		var user = Meteor.users.findOne({_id:userId});
+		var user = TutorProfiles.findOne({userId:userId});
 		if(!user){
-			return;
-		}
-		var status = user.profile.status;
-		if(status == "tutor"){
-			return false;
-		}
-		return true;
-	},
-	isProfileSet:function(){
-		if(!Meteor.user()){
-			return;
-		}
-		var userId = Meteor.user()._id;
-		var user = Meteor.users.findOne({_id:userId});
-		if(!user){
-			return;
-		}
-		var status = user.profile.status;
-		if(!status){
 			return false;
 		}
 		return true;

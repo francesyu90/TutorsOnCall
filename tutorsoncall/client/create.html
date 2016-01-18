@@ -1,0 +1,75 @@
+<template name="create">
+	{{#if currentUser}}
+		<div class="container marginTop">
+			{{> createProfileModal}}
+		</div>
+	{{/if}}
+</template>
+
+<template name="createProfileModal">
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Create Profile</button>
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+			<!-- Modal content-->
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Create Profile</h4>
+      			</div>
+      			<div class="modal-body">
+        			<form id="createProfileForm" class="js-create-profile">
+        				{{> createProfileForm}}
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+      				<div class="btn-group" role="group" aria-label="...">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			{{#if checkStatus}}
+	        			<button type="submit" class="btn btn-primary" form="createProfileForm">Submit</button>
+	        			{{/if}}
+        			</div>
+      			</div>
+    		</div>
+		</div>
+	</div>
+</template>
+
+<template name="createProfileForm">
+	{{#if checkStatus}}
+		<div class="form-group">
+  			<label for="area">Area:</label>
+  			<input type="text" class="form-control" id="area" placeholder="eg. Vancouver">
+		</div>
+		<div class="form-group">
+  			<label for="hrRate">Hourly Rate($):</label>
+  			<input type="text" class="form-control" id="hrRate" placeholder="eg. 34.50">
+		</div>
+		<div class="form-group">
+			<label for="subjects">Subjects of Specialization:</label>
+		  	<select id="subjects" class="form-control js-choose-subject" multiple>
+	  			{{#each subjects}}
+					<option value="{{name}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<div class="form-group">
+  			<label for="exprience">Teaching Experience:</label>
+  			<textarea class="form-control" rows="3" id="exprience"></textarea>
+		</div>
+	{{else}}
+		<div class="alert alert-info" role="alert" id="proAlert">
+			Only tutors are required to create profiles!
+		</div>
+		<div class="form-group">
+			<label for="status">Are you a student, a parent or a tutor?</label>
+		  	<select id="status" class="form-control js-choose-status">
+	  			<option value="none">Please select from one of the following: </option>
+				<option value="student">Student</option>
+				<option value="parent">Parent</option>
+				<option value="tutor">Tutor</option>
+			</select>
+		</div>
+	{{/if}}
+</template>

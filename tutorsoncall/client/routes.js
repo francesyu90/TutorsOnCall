@@ -10,6 +10,18 @@ Router.route("/",function (){
 	});
 });
 
+Router.route("/create",function (){
+	this.render("navbar",{
+		to:"navbar"
+	});
+	this.render("create",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
 Router.route("/profile",function (){
 	this.render("navbar",{
 		to:"navbar"
