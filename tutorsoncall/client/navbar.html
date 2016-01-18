@@ -18,6 +18,11 @@
             <li><a href="/contact">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
+              <li>
+                <a href="/messages">Messages</a>
+              </li>
+            {{/if}}
             {{#if checkProfileExist}}
               <li>
                 <!-- <p class="navbar-text"> -->

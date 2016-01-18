@@ -22,6 +22,15 @@ Meteor.methods({
 		}
 		var res = TutorProfiles.remove({userId:userId});
 		return res;
+	},
+	createMessage:function(message){
+		if(!this.userId){
+			return;
+		}
+		if(message.to == this.userId){
+			return;
+		}
+		Message.insert(message);
 	}
 
 });

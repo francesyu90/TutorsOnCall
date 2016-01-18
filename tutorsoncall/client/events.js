@@ -91,6 +91,32 @@ Template.filter.events({
 
 });
 
+Template.sendMessagetoTutor.events({
+
+	"submit .js-send-message-to-tutor":function(event){
+		event.preventDefault();
+		if(!Meteor.user()){
+			return;
+		}
+		var tutorId = event.target.tutorId.value;
+		var id = Meteor.user()._id;
+		var message = event.target.messageI.value;
+		event.target.messageI.value = "";
+		if(tutorId == id){
+			alert("Warning: You cannot send message to yourself!");
+			return;
+		}
+		var message = {
+			from:id,
+			message:message,
+			to:tutorId,
+			status:"new"
+		}
+		Meteor.call("createMessage", message);
+	}
+
+});
+
 
 
 

@@ -5,3 +5,12 @@ Meteor.publish("users", function(){
 Meteor.publish("tutorprofiles", function(){
 	return TutorProfiles.find({});
 });
+
+Meteor.publish("messages", function(){
+	return Messages.find({
+		$or: [
+			{from:this.userId},
+			{to:this.userId}
+		]
+	});
+});

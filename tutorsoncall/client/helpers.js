@@ -12,6 +12,7 @@ var subjects = [
 
 Meteor.subscribe("users");
 Meteor.subscribe("tutorprofiles");
+Meteor.subscribe("messages");
 
 Template.profile.helpers({
 
