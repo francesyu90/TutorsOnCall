@@ -80,15 +80,13 @@ Template.profile.events({
 				return;
 			}
 			var res = Meteor.call("deleteUsr", userId);
-			if(res == 1){
-				var message = {
-					from:"admin",
-					message:"Your tutor profile has been successfully removed!",
-					to:userId,
-					status:"new"
-				}
-				Meteor.call("createMessage", message);
+			var message = {
+				from:"admin",
+				message:"Your tutor profile has been successfully removed!",
+				to:userId,
+				status:"new"
 			}
+			Meteor.call("createMessage", message);
 		}
 	}
 

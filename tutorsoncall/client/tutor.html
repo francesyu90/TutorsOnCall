@@ -45,7 +45,9 @@
 		  	</table>
 	  	</div>
 	</div>
-	{{> sendMessagetoTutor}}
+	{{#if currentUser}}
+		{{> sendMessagetoTutor}}
+	{{/if}}
 </template>
 
 <template name="sendMessagetoTutor">
