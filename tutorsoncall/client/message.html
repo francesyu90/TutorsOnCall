@@ -1,9 +1,25 @@
 <template name="message">
 	<div class="container marginTop">
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				{{> messageTemplate}}
-			</div>
+		{{#if currentUser}}
+			{{> messageBody}}
+		{{else}}
+			{{> warningAlert}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="messageBody">
+	<div class="row">
+   		<div class="col-md-6">
+   			<a type="button" class="btn btn-default" href="/messages">
+   				<span class="glyphicon glyphicon-chevron-left"></span>
+   				Return to Messages page
+   			</a>
+   		</div>
+	</div>
+	<div class="marginTopI">
+		<div class="col-md-offset-1 col-md-10">
+			{{> messageTemplate}}
 		</div>
 	</div>
 </template>

@@ -1,9 +1,13 @@
 <template name="messages">
 	<div class="container marginTop">
-		{{#if isEmpty}}
-			{{> messageAlert}}
+		{{#if currentUser}}
+			{{#if isEmpty}}
+				{{> messageAlert}}
+			{{else}}
+				{{> messageList}}
+			{{/if}}
 		{{else}}
-			{{> messageList}}
+			{{> warningAlert}}
 		{{/if}}
 	</div>
 </template>
