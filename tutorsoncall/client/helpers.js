@@ -1,3 +1,18 @@
+Session.set("linkLimit", 1);
+lastScrollTop = 0;
+$(window).scroll(function(event){
+	//	test if near the buttom of the window
+	if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+		//	where are in the page
+		var scrollTop = $(this).scrollTop();
+		//	test if going down
+		if(scrollTop > lastScrollTop) {
+			Session.set("linkLimit", Session.get("linkLimit")+2);
+		}
+		lastScrollTop = scrollTop;
+	}
+});
+
 var subjects = [
 	{name:"Chemistry"},
 	{name:"Physics"},
@@ -272,7 +287,7 @@ function fixObjectKeys(obj){
 Template.tutorProfile.helpers({
 
 	reviews:function(tutorId){
-		return Reviews.find({tutorId:tutorId});
+		return Reviews.find({tutorId:tutorId},{limit:Session.get("linkLimit")});
 	},
 	accessControl:function(tutorId){
 		if(!Meteor.user()){
