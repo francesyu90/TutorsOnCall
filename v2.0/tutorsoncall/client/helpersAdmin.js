@@ -79,3 +79,24 @@ function fixObjectKeys(obj){
   	}
   	return newObj;
 }
+
+Template.reviewsAdmin.helpers({
+
+	reviews:function(){
+		return Reviews.find({},{limit:Session.get("linkLimit")});
+	},
+	getName:function(userId){
+		if(!Meteor.user()){
+			return;
+		}
+		var user = Meteor.users.findOne({_id:userId});
+		if(!user){
+			return;
+		}
+		var usr = fixObjectKeys(user.profile);
+		return usr.firstname + " " + usr.lastname;
+	}
+
+});
+
+

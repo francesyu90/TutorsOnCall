@@ -100,6 +100,30 @@ Template.messagesAdmin.events({
 
 });
 
+Template.reviewsAdmin.events({
+
+	"click .js-del-review":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var reviewId = event.target.id;
+		// var review = Reviews.findOne({_id:reviewId});
+		// console.log(review);
+		if(confirm("Are you sure you want to delete this review?")){
+			Meteor.call("deleteReview", reviewId);
+		}
+	},
+	"click .js-del-all-reviews":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		if(confirm("Are you sure you want to delete all reviews?")){
+			Meteor.call("deleteReviews");
+		}
+	}
+
+});
+
 
 
 

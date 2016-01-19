@@ -151,6 +151,19 @@ Router.route("/admin/messages",function (){
 	});
 });
 
+Router.route("/admin/reviews",function (){
+	Session.set("linkLimit", 2);
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("reviewsAdmin",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
 
 
 

@@ -130,6 +130,18 @@ Meteor.methods({
 				subjects:subjects
 			}
 		})
+	},
+	deleteReview:function(reviewId){
+		if(!this.userId){
+			return;
+		}
+		Reviews.remove({_id:reviewId});
+	},
+	deleteReviews:function(){
+		if(!this.userId){
+			return;
+		}
+		Reviews.remove({});
 	}
 
 

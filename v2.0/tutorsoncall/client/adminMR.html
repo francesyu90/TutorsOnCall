@@ -56,3 +56,57 @@
 		</div>
 	</div>
 </template>
+
+<template name="reviewsAdmin">
+	<div class="container marginTop">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Manage Reviews</h3>
+  			</div>
+  			<div class="panel-body">
+  				<div class="marginTopI">
+  					<button class="btn btn-danger js-del-all-reviews">
+  						Clear Reviews
+  						<span class="glyphicon glyphicon-trash"></span>
+  					</button>
+  				</div>
+  				<div class="marginTopI">
+  				<!-- List group -->
+  				<ul class="list-group">
+  					{{#each reviews}}
+  					<li class="list-group-item">
+  						<blockquote>
+  							<div class="row">
+  								<div class="col-md-11">
+  									<label>
+		  								From:
+		  							</label> 
+		  							{{getName userId}}
+		  							<br>
+		  							<label>
+		  								To:
+		  							</label>
+		  							{{getName tutorId}}
+		  							<br>
+		  							<label>
+		  								Review
+		  							</label>
+		  							<p>
+		  								{{review}}
+		  							</p>
+  								</div>
+  								<div class="col-md-1">
+  									<button class="btn btn-danger js-del-review" id="{{_id}}">
+  										&times;
+  									</button>
+  								</div>
+  							</div>
+  						</blockquote>
+  					</li>
+  					{{/each}}
+  				</ul>
+  				</div>
+  			</div>
+		</div>
+	</div>
+</template>
