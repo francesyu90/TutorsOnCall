@@ -28,3 +28,14 @@ Meteor.publish("messages", function(){
 Meteor.publish("reviews", function(){
 	return Reviews.find({});
 });
+
+Meteor.publish("contactmessages", function(){
+	if(!this.userId){
+		return;
+	}
+	var user = Meteor.users.findOne({_id:this.userId});
+	if(!user || !user.role){
+		return;
+	}
+	return ContactMessages.find({});
+});

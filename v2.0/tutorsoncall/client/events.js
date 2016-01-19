@@ -259,6 +259,22 @@ Template.tutorProfile.events({
 
 });
 
+Template.contactForm.events({
+
+	"submit .js-contact-form":function(event){
+		var name = event.currentTarget.name.value;
+		var email = event.currentTarget.email.value;
+		var message = event.currentTarget.message.value;
+		var obj = {
+			name:name,
+			email:email,
+			message:message
+		}
+		Meteor.call("sendContactForm", obj);
+	}
+
+});
+
 
 
 

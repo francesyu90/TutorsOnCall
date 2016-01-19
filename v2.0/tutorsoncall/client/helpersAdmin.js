@@ -24,6 +24,8 @@ var subjectsI = [
 	{name:"Geography"}
 ];
 
+Meteor.subscribe("contactmessages");
+
 Template.tutorsAdmin.helpers({
 
 	tutorprofilesIndex: () => TutorProfilesIndex
@@ -104,6 +106,12 @@ Template.reviewsAdmin.helpers({
 		var usr = fixObjectKeys(user.profile);
 		return usr.firstname + " " + usr.lastname;
 	}
+
+});
+
+Template.contactMessagesTemplate.helpers({
+
+	contactmessagesIndex: () => ContactMessagesIndex
 
 });
 

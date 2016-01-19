@@ -1,0 +1,116 @@
+<template name="contactmessagesAdmin">
+	<div class="container marginTop">
+		{{> contactMessagesTemplate}}
+	</div>
+</template>
+
+<template name="contactMessagesTemplate">
+	<div class="panel panel-default">
+				<div class="panel-heading">
+		    		<h3 class="panel-title">Manage Contact Messages</h3>
+		  		</div>
+		  		<div class="panel-body">
+		  			 <div class="row marginTopI">
+	   					<div class="col-md-4">
+	   						<div class="btn-group" role="group" aria-label="...">
+		   						<button class="btn btn-danger js-del-all-contact-messages">
+			  						Clear Contact Messages
+			  						<span class="glyphicon glyphicon-trash"></span>
+			  					</button>
+		  					</div>
+	   					</div>
+	   					<div class="col-md-8">
+	   			 			<label>
+			    				Search (key words can be name, email or words in message): 
+			    			</label>
+			    			<br>
+			    			{{> EasySearch.Input index=contactmessagesIndex }}
+	   					</div>
+	   				</div>
+		    		<div class="marginTopI">
+		    			<table class="table table-striped table-bordered">
+		    				<thead>
+		      					<tr>
+							        <th>Name</th>
+							        <th>Email</th>
+							        <th>Details</th>
+							        <th>Delete</th>
+		      					</tr>
+		    				</thead>
+		    				<tbody>
+		    					{{#EasySearch.Each index=contactmessagesIndex }}
+		      					<tr>
+		      						<td>
+		      							{{name}}
+		      						</td>
+		      						<td>
+		      							{{email}}
+		      						</td>
+							        <td>
+		    							<a href="/admin/contactmessage/{{_id}}">
+		    								<span class="glyphicon glyphicon-option-horizontal"></span>
+		    							</a>
+		    						</td>
+					        		<td>
+					        			<span class="glyphicon glyphicon-trash js-del-contact-message" aria-hidden="true" id="{{_id}}"></span>
+					        		</td>
+		      					</tr>
+		      					{{/EasySearch.Each}}
+		    				</tbody>
+		  				</table>
+		  				<div class="text-center">
+		  					{{> EasySearch.Pagination index=contactmessagesIndex maxPages=10}}
+		  				</div>
+		    		</div>
+		  		</div>
+			</div>
+		<!-- </div> -->
+</template>
+
+<template name="contactMessageAdmin">
+	<div class="container marginTop">
+		<div class="btn-group" role="group" aria-label="...">
+			<a type="button" class="btn btn-default" href="/admin/contactmessages">
+			   	<span class="glyphicon glyphicon-chevron-left"></span>
+			   	Return to Contact Messages page
+			</a>
+			<button class="btn btn-danger js-del-contact-messageI" id="{{_id}}">
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				Remove This Message
+			</button>
+		</div>
+		<div class="marginTopI">
+			<div class="panel panel-primary marginBottom">
+			  	<div class="panel-heading">Contact Message</div>
+				<!-- Table -->
+			  	<div class="panel-body">
+			  		<table class="table table-striped table-bordered">
+				    	<tbody>
+				    		<tr>
+					    		<th>Name</th>
+					    		<td>{{name}}</td>
+					    	</tr>
+					    	<tr>
+					    		<th>Email</th>
+					    		<td>{{email}}</td>
+					    	</tr>
+					    	<tr>
+					    		<th>Message</th>
+					    		<td>{{message}}</td>
+					   		</tr>
+				    	</tbody>
+				  	</table>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+
+
+
+
+
+
+

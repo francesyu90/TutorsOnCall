@@ -195,6 +195,55 @@ Template.createProfileModalAdmin.events({
 
 });
 
+Template.contactMessagesTemplate.events({
+
+	"click .js-del-contact-message":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var id = Meteor.user()._id;
+		if(!adminUser(id)){
+			return;
+		}
+		var messageId = event.target.id;
+		if(confirm("Are you sure you want to delete this message?")){
+			Meteor.call("deleteContactMessage", messageId);
+		}
+	},
+	"click .js-del-all-contact-messages":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var id = Meteor.user()._id;
+		if(!adminUser(id)){
+			return;
+		}
+		if(confirm("Are you sure you want to delete all contact messages?")){
+			Meteor.call("deleteContactMessages");
+		}
+	}
+
+});
+
+Template.contactMessageAdmin.events({
+
+	"click .js-del-contact-messageI":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var id = Meteor.user()._id;
+		if(!adminUser(id)){
+			return;
+		}
+		var messageId = event.target.id;
+		if(confirm("Are you sure you want to delete this message?")){
+			Meteor.call("deleteContactMessage", messageId);
+			document.location.href = "/admin/contactmessages";
+		}
+	}
+
+});
+
 
 
 

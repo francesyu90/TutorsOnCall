@@ -9,3 +9,11 @@ TutorProfilesIndex = new EasySearch.Index({
 });
 
 Reviews = new Mongo.Collection("reviews");
+
+ContactMessages = new Mongo.Collection("contactmessages");
+
+ContactMessagesIndex = new EasySearch.Index({
+	collection: ContactMessages,
+    fields: ['name', 'email'],
+    engine: new EasySearch.Minimongo()
+});

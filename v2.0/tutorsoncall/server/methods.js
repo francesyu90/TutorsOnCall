@@ -78,6 +78,9 @@ Meteor.methods({
 		}
 		Reviews.remove({_id:reviewId});
 	},
+	sendContactForm:function(form){
+		ContactMessages.insert(form);
+	},
 
 
 	// For Admin
@@ -148,7 +151,19 @@ Meteor.methods({
 			return;
 		}
 		TutorProfiles.insert(profile);
-	}
+	},
+	deleteContactMessage:function(messageId){
+		if(!this.userId){
+			return;
+		}
+		ContactMessages.remove({_id:messageId});
+	},
+	deleteContactMessages:function(){
+		if(!this.userId){
+			return;
+		}
+		ContactMessages.remove({});
+	},
 
 });
 

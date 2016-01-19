@@ -228,6 +228,60 @@ Router.route("/admin/reviews",function (){
 	});
 });
 
+Router.route("/admin/contactmessages",function (){
+	this.render("footer",{
+		to:"footer"
+	});
+	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
+		return;
+	}
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("contactmessagesAdmin",{
+		to:"main"
+	});
+});
+
+Router.route("/admin/contactmessage/:id",function (){
+	this.render("footer",{
+		to:"footer"
+	});
+	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
+		return;
+	}
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("contactMessageAdmin",{
+		to:"main",
+		data: function() {
+			var message = ContactMessages.findOne({_id:this.params.id});
+			return message;
+		}
+	});
+});
+
 
 
 
