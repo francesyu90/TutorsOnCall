@@ -73,13 +73,51 @@ Meteor.methods({
 		Reviews.remove({_id:reviewId});
 	},
 
-	
+
 	// For Admin
 	deleteTPAdmin:function(tutorId){
 		if(!this.userId){
 			return;
 		}
 		TutorProfiles.remove({_id:tutorId});
+	},
+	updateTutorProfile:function(tutorId, tutor){
+		if(!this.userId){
+			return;
+		}
+		if(!TutorProfiles.findOne({_id:tutorId})){
+			return;
+		}
+		var name = tutor.name;
+		var area = tutor.area;
+		var hrRate = tutor.hrRate;
+		var upvote = tutor.upvote;
+		var userId = tutor.userId;
+		var subjects = tutor.subjects;
+		if(!subjects){
+			TutorProfiles.update(
+				{_id:tutorId}, 
+				{$set: {
+					name:name, 
+					area:area,
+					hrRate:hrRate,
+					upvote:upvote,
+					userId:userId
+				}
+			})
+			return;
+		}
+		TutorProfiles.update(
+			{_id:tutorId}, 
+			{$set: {
+				name:name, 
+				area:area,
+				hrRate:hrRate,
+				upvote:upvote,
+				userId:userId,
+				subjects:subjects
+			}
+		})
 	}
 
 
