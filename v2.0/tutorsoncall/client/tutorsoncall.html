@@ -1,0 +1,21 @@
+<head>
+	<title>TutorsOnCall</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+</body>
+
+<template name="ApplicationLayout">
+	{{> yield "navbar"}}
+	{{> yield "main"}}
+	{{> yield "footer"}}
+</template>
+
+<template name="warningAlert">
+	<div class="alert alert-warning" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  		<span class="sr-only">Warning:</span>
+  		Please log in for more features!
+	</div>
+</template>

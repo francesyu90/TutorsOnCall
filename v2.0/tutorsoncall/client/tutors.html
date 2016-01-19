@@ -1,0 +1,70 @@
+<template name="tutors">
+	<div class="container marginTop">
+		{{#if isEmpty}}
+			{{> tutorAlert}}
+		{{else}}
+			{{> searchBox}}
+		{{/if}}
+	</div>
+</template>
+
+<template name="tutorAlert">
+	<div class="alert alert-info" role="alert">
+  		Currently, there is no registered tutor on our website. Please visit our website next time!
+	</div>
+</template>
+
+<template name="searchBox">
+   <div class="row">
+   		<div class="col-md-6">
+   			 <label>
+		    	Search (key words can be name, area or subject): 
+		    </label>
+		    <br>
+		    {{> EasySearch.Input index=tutorprofilesIndex }}
+   		</div>
+   		<div class="col-md-6">
+   			<a type="button" class="btn btn-default" href="/tutors/filter">
+   				Filter by Hourly Rate / Ratings
+   				<span class="glyphicon glyphicon-chevron-right"></span>
+   			</a>
+   		</div>
+   </div>
+    <div class="marginTopI">
+    	<p>
+    		<label>
+    			Note: 
+    		</label>
+    		<ul>
+    			<li>
+    				Click the name of a tutor to see his/her profile
+    			</li>
+    		</ul>
+    	</p>
+    	<table class="table table-striped table-bordered">
+	    	<thead>
+	    		<tr>
+		    		<th>Name</th>
+		    		<th>Area</th>
+		    		<th>Hourly Rate</th>
+		    		<th>Subjects of Specialization</th>
+		    	</tr>
+	    	</thead>
+	    	<tbody>
+	    		{{#EasySearch.Each index=tutorprofilesIndex }}
+	    			<tr>
+	    				<td>
+	    					<a href="/tutor/{{userId}}">{{name}}</a>
+	    				</td>
+	    				<td>{{area}}</td>
+	    				<td>${{hrRate}}</td>
+	    				<td>{{subjects}}</td>
+	    			</tr>
+	    		{{/EasySearch.Each}}
+	    	</tbody>
+	    </table>
+	    <div class="text-center">
+    		{{> EasySearch.Pagination index=tutorprofilesIndex maxPages=20}}
+  		</div>
+    </div>
+</template>

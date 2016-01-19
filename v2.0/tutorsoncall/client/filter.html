@@ -1,0 +1,76 @@
+<template name="tutorsI">
+	<div class="container marginTop">
+		{{> filter}}
+	</div>
+</template>
+
+<template name="filter">
+   <div class="row">
+   		<div class="col-md-4">
+   			<a type="button" class="btn btn-default" href="/tutors">
+   				<span class="glyphicon glyphicon-chevron-left"></span>
+   				Return to Tutors page
+   			</a>
+   		</div>
+   		<div class="col-md-4">
+   			 <form class="js-filter-hrRate">
+   			 	<label for="hrRate">
+			    	Filter by hourly rate only (at most): 
+			    </label>
+			    <br>
+			    <input id="hrRate" type="text"> dollars
+			    &nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="submit" class="btn btn-default btn-sm">
+			    	Go
+			    </button>
+   			 </form>
+   		</div>
+   		<div class="col-md-4">
+   			 <form class="js-filter-upvote">
+   			 	<label for="upvote">
+			    	Filter by ratings (at least): 
+			    </label>
+			    <br>
+			    <input id="upvote" type="text"> likes
+			    &nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="submit" class="btn btn-default btn-sm">
+			    	Go
+			    </button>
+   			 </form>
+   		</div>
+   </div>
+    <div class="marginTopI">
+    	<p>
+    		<label>
+    			Note: 
+    		</label>
+    		<ul>
+    			<li>
+    				Click the name of a tutor to see his/her profile
+    			</li>
+    		</ul>
+    	</p>
+    	<table class="table table-striped table-bordered">
+	    	<thead>
+	    		<tr>
+		    		<th>Name</th>
+		    		<th>Area</th>
+		    		<th>Hourly Rate</th>
+		    		<th>Likes</th>
+		    	</tr>
+	    	</thead>
+	    	<tbody>
+	    		{{#each tutors}}
+	    			<tr>
+	    				<td>
+	    					<a href="/tutor/{{userId}}">{{name}}</a>
+	    				</td>
+	    				<td>{{area}}</td>
+	    				<td>${{hrRate}}</td>
+	    				<td>{{upvote}}</td>
+	    			</tr>
+	    		{{/each}}
+	    	</tbody>
+	    </table>
+    </div>
+</template>
