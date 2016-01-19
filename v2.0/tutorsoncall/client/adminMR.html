@@ -1,0 +1,50 @@
+<template name="messagesAdmin">
+	<div class="container marginTop">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Manage Messages</h3>
+  			</div>
+  			<div class="panel-body">
+  				<!-- List group -->
+  				<ul class="list-group">
+  					{{#each messages}}
+  					<li class="list-group-item">
+  						<blockquote>
+  							<div class="row">
+  								<div class="col-md-11">
+  									<label>
+		  								From:
+		  							</label> 
+		  							{{getName from}}
+		  							<br>
+		  							<label>
+		  								To:
+		  							</label>
+		  							{{getName to}}
+		  							<br>
+		  							<label>
+		  								Title: 
+		  							</label>
+		  							{{title}}
+		  							<br>
+		  							<label>
+		  								Message
+		  							</label>
+		  							<p>
+		  								{{message}}
+		  							</p>
+  								</div>
+  								<div class="col-md-1">
+  									<button class="btn btn-danger js-del-message" id="{{_id}}">
+  										&times;
+  									</button>
+  								</div>
+  							</div>
+  						</blockquote>
+  					</li>
+  					{{/each}}
+  				</ul>
+  			</div>
+		</div>
+	</div>
+</template>

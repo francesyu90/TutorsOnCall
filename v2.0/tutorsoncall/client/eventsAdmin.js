@@ -70,6 +70,20 @@ Template.editTutorModal.events({
 
 });
 
+Template.messagesAdmin.events({
+
+	"click .js-del-message":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var messageId = event.target.id;
+		if(confirm("Are you sure you want to delete this message?")){
+			Meteor.call("deleteMessage", messageId);
+		}
+	}
+
+});
+
 
 
 

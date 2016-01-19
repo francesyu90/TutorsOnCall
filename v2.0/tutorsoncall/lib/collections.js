@@ -1,4 +1,4 @@
-Messages = new Mongo.Collection("messages");	
+Messages = new Mongo.Collection("messages");
 
 TutorProfiles = new Mongo.Collection("tutorprofiles");
 

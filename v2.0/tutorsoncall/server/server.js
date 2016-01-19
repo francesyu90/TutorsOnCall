@@ -7,19 +7,39 @@ Meteor.publish("tutorprofiles", function(){
 });
 
 Meteor.publish("messages", function(){
-	return Messages.find({
-		$or: [
-			{from:this.userId},
-			{to:this.userId}
-		]
-	});
+	if(!this.userId){
+		return;
+	}
+	var user = Meteor.users.findOne({_id:this.userId});
+	if(!user){
+		return;
+	}
+	if(user.role != "admin"){
+		return Messages.find({
+			$or: [
+				{from:this.userId},
+				{to:this.userId}
+			]
+		});
+	}
+	return Messages.find({});
 });
 
 Meteor.publish("reviews", function(){
-	return Reviews.find({
-		$or: [
-			{tutorId:this.userId},
-			{userId:this.userId}
-		]
-	});
+	if(!this.userId){
+		return;
+	}
+	var user = Meteor.users.findOne({_id:this.userId});
+	if(!user){
+		return;
+	}
+	if(user.role != "admin"){
+		return Reviews.find({
+			$or: [
+				{tutorId:this.userId},
+				{userId:this.userId}
+			]
+		});
+	}
+	return Reviews.find({});
 });

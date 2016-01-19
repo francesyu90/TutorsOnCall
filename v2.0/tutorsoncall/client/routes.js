@@ -138,6 +138,19 @@ Router.route("/admin/tutors",function (){
 	});
 });
 
+Router.route("/admin/messages",function (){
+	Session.set("linkLimit", 3);
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("messagesAdmin",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
 
 
 
