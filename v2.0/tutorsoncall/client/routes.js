@@ -114,7 +114,26 @@ Router.route("/message/:id",function (){
 	});
 });
 
+function adminUser(userId){
+	var user = Meteor.users.findOne({_id:userId});
+	if(!user){
+		return;
+	}
+	var role = user.role;
+	if(!role){
+		return false;
+	}
+	return true;
+}
+
 Router.route("/admin",function (){
+	if(!Meteor.user()){
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		return;
+	}
 	this.render("navbarAdmin",{
 		to:"navbar"
 	});
@@ -127,6 +146,13 @@ Router.route("/admin",function (){
 });
 
 Router.route("/admin/tutors",function (){
+	if(!Meteor.user()){
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		return;
+	}
 	this.render("navbarAdmin",{
 		to:"navbar"
 	});
@@ -139,6 +165,13 @@ Router.route("/admin/tutors",function (){
 });
 
 Router.route("/admin/messages",function (){
+	if(!Meteor.user()){
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		return;
+	}
 	Session.set("linkLimit", 2);
 	this.render("navbarAdmin",{
 		to:"navbar"
@@ -152,6 +185,13 @@ Router.route("/admin/messages",function (){
 });
 
 Router.route("/admin/reviews",function (){
+	if(!Meteor.user()){
+		return;
+	}
+	var userId = Meteor.user()._id;
+	if(!adminUser(userId)){
+		return;
+	}
 	Session.set("linkLimit", 2);
 	this.render("navbarAdmin",{
 		to:"navbar"

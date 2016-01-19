@@ -124,6 +124,33 @@ Template.reviewsAdmin.events({
 
 });
 
+Template.createProfileModalAdmin.events({
+
+	"submit .js-create-profile-admin":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		event.preventDefault();
+		var name = event.target.name.value;
+		var userId = event.target.userId.value;
+		var area = event.target.area.value;
+		var hrRate = event.target.hrRate.value;
+		var subjects = $("#subjects").val();
+		var exprience = event.target.exprience.value;
+		var profile = {
+			userId:userId,
+			name:name,
+			area:area,
+			hrRate:Number(hrRate),
+			subjects:subjects,
+			exprience:exprience,
+			upvote:0
+		}
+		Meteor.call("createNewProfile", profile);
+	}
+
+});
+
 
 
 
