@@ -64,7 +64,13 @@ Meteor.methods({
 		if(!this.userId){
 			return;
 		}
-		return Reviews.insert(review);
+		Reviews.insert(review);
+	},
+	deleteReview:function(reviewId){
+		if(!this.userId){
+			return;
+		}
+		Reviews.remove({_id:reviewId});
 	}
 
 

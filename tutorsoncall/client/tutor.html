@@ -28,7 +28,7 @@
 </template>
 
 <template name="tutorProfile">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary marginBottom">
 	  	<div class="panel-heading">Tutor Profile</div>
 		<!-- Table -->
 	  	<div class="panel-body">
@@ -75,15 +75,20 @@
 	  	 			Reviews
 	  	 		</label>
 	  	 	</li>
-	  	 	{{#each reviews userId}}
 	  	 	<li class="list-group-item">
-	  	 		<blockquote>
-	  	 			<p>
-	  	 				{{review}}
-	  	 			</p>
-	  	 		</blockquote>
+		  	 	{{#each reviews userId}}
+		  	 		<blockquote>
+		  	 			<p>
+		  	 				{{review}}
+		  	 				<!-- {{#if accessControl tutorId}}
+		  	 					<span style="float:right">
+			  	 					<button type="button" class="btn btn-danger js-delete-review" id="re{{_id}}">&times;</button>
+			  	 				</span>
+		  	 				{{/if}} -->
+		  	 			</p>
+		  	 		</blockquote>
+		  	 	{{/each}}
 	  	 	</li>
-	  	 	{{/each}}
 	  	 </ul>
 	</div>
 </template>

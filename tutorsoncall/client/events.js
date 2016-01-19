@@ -236,6 +236,24 @@ Template.addReviewModal.events({
 
 });
 
+Template.tutorProfile.events({
+
+	"click .js-delete-review":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		var reviewId = event.currentTarget.id.substring(2);
+		var review = Reviews.findOne({_id:reviewId});
+		if(!review){
+			return;
+		}
+		if(confirm("Are you sure you want to delete this review?")){
+			Meteor.call("deleteReview", reviewId);
+		}
+	}
+
+});
+
 
 
 

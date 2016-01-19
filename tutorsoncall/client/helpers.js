@@ -273,6 +273,20 @@ Template.tutorProfile.helpers({
 
 	reviews:function(tutorId){
 		return Reviews.find({tutorId:tutorId});
+	},
+	accessControl:function(tutorId){
+		if(!Meteor.user()){
+			return;
+		}
+		var id = Meteor.user()._id;
+		var tutor = TutorProfiles.findOne({userId:id});
+		if(!tutor){
+			return;
+		}
+		if(tutor.userId != tutorId){
+			return false;
+		}
+		return true;
 	}
 
 });
