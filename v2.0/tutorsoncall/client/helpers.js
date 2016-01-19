@@ -110,7 +110,20 @@ Template.navbar.helpers({
 		var userId = Meteor.user()._id;
 		var messageCount = Messages.find({to:userId, status:"new"}).count();
 		return messageCount;
-
+	},
+	isAdmin:function(){
+		if(!Meteor.user()){
+			return;
+		}
+		var user = Meteor.users.findOne({_id:Meteor.user()._id});
+		if(!user){
+			return;
+		}
+		var role = user.role;
+		if(!role || role != "admin"){
+			return false;
+		}
+		return true;
 	}
 
 });

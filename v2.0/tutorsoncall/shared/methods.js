@@ -71,6 +71,15 @@ Meteor.methods({
 			return;
 		}
 		Reviews.remove({_id:reviewId});
+	},
+
+	
+	// For Admin
+	deleteTPAdmin:function(tutorId){
+		if(!this.userId){
+			return;
+		}
+		TutorProfiles.remove({_id:tutorId});
 	}
 
 

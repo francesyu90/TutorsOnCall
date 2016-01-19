@@ -114,6 +114,30 @@ Router.route("/message/:id",function (){
 	});
 });
 
+Router.route("/admin",function (){
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("homeAdmin",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
+Router.route("/admin/tutors",function (){
+	this.render("navbarAdmin",{
+		to:"navbar"
+	});
+	this.render("tutorsAdmin",{
+		to:"main"
+	});
+	this.render("footer",{
+		to:"footer"
+	});
+});
+
 
 
 
