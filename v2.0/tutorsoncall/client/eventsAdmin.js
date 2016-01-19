@@ -22,6 +22,14 @@ Template.tutorsAdmin.events({
 			Meteor.call("createMessage", message);
 		}
 	},
+	"click .js-del-all-tutors":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		if(confirm("Are you sure you want to delete all tutor profiles?")){
+			Meteor.call("deleteTPs");
+		}
+	},
 	"click .js-edit-tutor":function(event){
 		if(!Meteor.user()){
 			return;
@@ -79,6 +87,14 @@ Template.messagesAdmin.events({
 		var messageId = event.target.id;
 		if(confirm("Are you sure you want to delete this message?")){
 			Meteor.call("deleteMessage", messageId);
+		}
+	},
+	"click .js-del-all-messages":function(event){
+		if(!Meteor.user()){
+			return;
+		}
+		if(confirm("Are you sure you want to delete all messages?")){
+			Meteor.call("deleteMessages");
 		}
 	}
 

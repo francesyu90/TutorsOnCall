@@ -139,7 +139,7 @@ Router.route("/admin/tutors",function (){
 });
 
 Router.route("/admin/messages",function (){
-	Session.set("linkLimit", 3);
+	Session.set("linkLimit", 2);
 	this.render("navbarAdmin",{
 		to:"navbar"
 	});

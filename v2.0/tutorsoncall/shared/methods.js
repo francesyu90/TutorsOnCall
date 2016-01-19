@@ -49,6 +49,12 @@ Meteor.methods({
 		}
 		Messages.remove({_id:messageId});
 	},
+	deleteMessages:function(){
+		if(!this.userId){
+			return;
+		}
+		Messages.remove({});
+	},
 	upvoteTutor:function(tutorId){
 		if(!this.userId){
 			return;
@@ -80,6 +86,12 @@ Meteor.methods({
 			return;
 		}
 		TutorProfiles.remove({_id:tutorId});
+	},
+	deleteTPs:function(){
+		if(!this.userId){
+			return;
+		}
+		TutorProfiles.remove({});
 	},
 	updateTutorProfile:function(tutorId, tutor){
 		if(!this.userId){
