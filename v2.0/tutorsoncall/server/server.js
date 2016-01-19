@@ -26,20 +26,5 @@ Meteor.publish("messages", function(){
 });
 
 Meteor.publish("reviews", function(){
-	if(!this.userId){
-		return;
-	}
-	var user = Meteor.users.findOne({_id:this.userId});
-	if(!user){
-		return;
-	}
-	if(user.role != "admin"){
-		return Reviews.find({
-			$or: [
-				{tutorId:this.userId},
-				{userId:this.userId}
-			]
-		});
-	}
 	return Reviews.find({});
 });
