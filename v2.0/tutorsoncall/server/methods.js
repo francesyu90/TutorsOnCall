@@ -142,8 +142,13 @@ Meteor.methods({
 			return;
 		}
 		Reviews.remove({});
+	},
+	createNewProfileAdmin:function(profile){
+		if(!this.userId){
+			return;
+		}
+		TutorProfiles.insert(profile);
 	}
-
 
 });
 

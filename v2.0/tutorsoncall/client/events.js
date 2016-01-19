@@ -45,7 +45,7 @@ Template.createProfileModal.events({
 			hrRate:Number(hrRate),
 			subjects:subjects,
 			exprience:exprience,
-			upvote:0
+			upvote:Number(0)
 		}
 		Meteor.call("createNewProfile", profile);
 		var message = {
@@ -199,6 +199,11 @@ Template.tutor.events({
 		var tutorId = event.target.id.substring(1);
 		var tutor = TutorProfiles.findOne({userId:tutorId});
 		if(!tutor){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		if(userId == tutorId){
+			alert("Warning: you cannot rate yourself!");
 			return;
 		}
 		Meteor.call("upvoteTutor", tutorId);

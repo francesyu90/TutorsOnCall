@@ -12,19 +12,6 @@ $(window).scroll(function(event){
 	}
 });
 
-
-function adminUser(userId){
-	var user = Meteor.users.findOne({_id:userId});
-	if(!user){
-		return;
-	}
-	var role = user.role;
-	if(!role){
-		return false;
-	}
-	return true;
-}
-
 var subjectsI = [
 	{name:"Chemistry"},
 	{name:"Physics"},
@@ -37,27 +24,8 @@ var subjectsI = [
 	{name:"Geography"}
 ];
 
-Template.homeAdmin.helpers({
-
-	adminUser:function(){
-		if(!Meteor.user()){
-			return;
-		}
-		var userId = Meteor.user()._id;
-		return adminUser(userId);
-	}
-
-});
-
 Template.tutorsAdmin.helpers({
 
-	adminUser:function(){
-		if(!Meteor.user()){
-			return;
-		}
-		var userId = Meteor.user()._id;
-		return adminUser(userId);
-	},
 	tutorprofilesIndex: () => TutorProfilesIndex
 
 });

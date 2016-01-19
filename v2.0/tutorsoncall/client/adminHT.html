@@ -1,14 +1,11 @@
 <template name="homeAdmin">
 	<div class="container marginTop">
-		{{#if adminUser}}
-		{{else}}
-			{{> warningAlertAdmin}}
-		{{/if}}
+		
 	</div>
 </template>
 
 <template name="tutorsAdmin">
-	{{#if adminUser}}
+	<!-- {{#if adminUser}} -->
 		{{> editTutorModal}}
 		<div class="container marginTop">
 			<div class="panel panel-default">
@@ -67,15 +64,18 @@
 		      					{{/EasySearch.Each}}
 		    				</tbody>
 		  				</table>
+		  				<div class="text-center">
+		  					{{> EasySearch.Pagination index=tutorprofilesIndex maxPages=10}}
+		  				</div>
 		    		</div>
 		  		</div>
 			</div>
 		</div>
-	{{else}}
-		<div class="container marginTop">
+	<!-- {{else}} -->
+		<!-- <div class="container marginTop">
 			{{> warningAlertAdmin}}
-		</div>
-	{{/if}}
+		</div> -->
+	<!-- {{/if}} -->
 </template>
 
 <template name="createProfileModalAdmin">

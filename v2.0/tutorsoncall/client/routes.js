@@ -127,11 +127,20 @@ function adminUser(userId){
 }
 
 Router.route("/admin",function (){
+	this.render("footer",{
+		to:"footer"
+	});
 	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	var userId = Meteor.user()._id;
 	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	this.render("navbarAdmin",{
@@ -140,17 +149,23 @@ Router.route("/admin",function (){
 	this.render("homeAdmin",{
 		to:"main"
 	});
-	this.render("footer",{
-		to:"footer"
-	});
 });
 
 Router.route("/admin/tutors",function (){
+	this.render("footer",{
+		to:"footer"
+	});
 	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	var userId = Meteor.user()._id;
 	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	this.render("navbarAdmin",{
@@ -159,17 +174,23 @@ Router.route("/admin/tutors",function (){
 	this.render("tutorsAdmin",{
 		to:"main"
 	});
-	this.render("footer",{
-		to:"footer"
-	});
 });
 
 Router.route("/admin/messages",function (){
+	this.render("footer",{
+		to:"footer"
+	});
 	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	var userId = Meteor.user()._id;
 	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	Session.set("linkLimit", 2);
@@ -179,17 +200,23 @@ Router.route("/admin/messages",function (){
 	this.render("messagesAdmin",{
 		to:"main"
 	});
-	this.render("footer",{
-		to:"footer"
-	});
 });
 
 Router.route("/admin/reviews",function (){
+	this.render("footer",{
+		to:"footer"
+	});
 	if(!Meteor.user()){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	var userId = Meteor.user()._id;
 	if(!adminUser(userId)){
+		this.render("warningAlertAdminI",{
+			to:"main"
+		});
 		return;
 	}
 	Session.set("linkLimit", 2);
@@ -198,9 +225,6 @@ Router.route("/admin/reviews",function (){
 	});
 	this.render("reviewsAdmin",{
 		to:"main"
-	});
-	this.render("footer",{
-		to:"footer"
 	});
 });
 
