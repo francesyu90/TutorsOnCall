@@ -14,3 +14,12 @@ Meteor.publish("messages", function(){
 		]
 	});
 });
+
+Meteor.publish("reviews", function(){
+	return Reviews.find({
+		$or: [
+			{tutorId:this.userId},
+			{userId:this.userId}
+		]
+	});
+});

@@ -13,6 +13,7 @@ var subjects = [
 Meteor.subscribe("users");
 Meteor.subscribe("tutorprofiles");
 Meteor.subscribe("messages");
+Meteor.subscribe("reviews");
 
 Template.profile.helpers({
 
@@ -267,6 +268,14 @@ function fixObjectKeys(obj){
   	}
   	return newObj;
 }
+
+Template.tutorProfile.helpers({
+
+	reviews:function(tutorId){
+		return Reviews.find({tutorId:tutorId});
+	}
+
+});
 
 
 

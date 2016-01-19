@@ -59,8 +59,13 @@ Meteor.methods({
 		}
 		var upvote = profile.upvote + 1;
 		TutorProfiles.update({userId:tutorId},{$set: {upvote:upvote}});
+	},
+	addReview:function(review){
+		if(!this.userId){
+			return;
+		}
+		return Reviews.insert(review);
 	}
-
 
 
 });

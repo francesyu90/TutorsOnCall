@@ -1,12 +1,25 @@
 <template name="tutor">
 	<div class="container marginTop">
 		<div class="row">
-   			<div class="col-md-6">
-   				<a type="button" class="btn btn-default" href="/tutors">
-   					<span class="glyphicon glyphicon-chevron-left"></span>
-   					Return to Tutors page
-   				</a>
-   			</div>
+   			<!-- <div class="col-md-6"> -->
+   				<div class="btn-toolbar" role="toolbar" aria-label="...">
+   					<div class="btn-group" role="group" aria-label="...">
+		   				<a type="button" class="btn btn-default" href="/tutors">
+		   					<span class="glyphicon glyphicon-chevron-left"></span>
+		   					Return to Tutors page
+		   				</a>
+		   			</div>
+		   			{{#if currentUser}}
+						<div class="btn-group" role="group" aria-label="...">
+							{{> sendMessagetoTutor}}
+							{{> addReviewModal}}
+							<button type="button" class="btn btn-default js-upvote" id="u{{userId}}">
+								<span class="glyphicon glyphicon-thumbs-up"></span> like 
+							</button>
+						</div>
+					{{/if}}
+				</div>
+   			<!-- </div> -->
 		</div>
 		<div class="marginTopI">
 			{{> tutorProfile}}
@@ -56,20 +69,31 @@
 		    	</tbody>
 		  	</table>
 	  	</div>
+	  	 <ul class="list-group">
+	  	 	<li class="list-group-item">
+	  	 		<label>
+	  	 			Reviews
+	  	 		</label>
+	  	 	</li>
+	  	 	{{#each reviews userId}}
+	  	 	<li class="list-group-item">
+	  	 		<blockquote>
+	  	 			<p>
+	  	 				{{review}}
+	  	 			</p>
+	  	 		</blockquote>
+	  	 	</li>
+	  	 	{{/each}}
+	  	 </ul>
 	</div>
-	{{#if currentUser}}
-		<div class="btn-group" role="group" aria-label="...">
-			<button type="button" class="btn btn-default js-upvote" id="u{{userId}}">
-				<span class="glyphicon glyphicon-thumbs-up"></span> like
-			</button>
-			{{> sendMessagetoTutor}}
-		</div>
-	{{/if}}
 </template>
 
 <template name="sendMessagetoTutor">
 	<!-- Trigger the modal with a button -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendMessageModal">Send Message to {{name}}</button>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#sendMessageModal">
+		<span class="glyphicon glyphicon-envelope"></span>
+		Send Message 
+	</button>
 	<!-- Modal -->
 	<div id="sendMessageModal" class="modal fade" role="dialog">
   		<div class="modal-dialog">
@@ -109,6 +133,54 @@
 	</div>
 </template>
 
+<template name="addReviewModal">
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addReviewModal">
+		<span class="glyphicon glyphicon-plus"></span>
+		Add Review 
+	</button>
+	<!-- Modal -->
+	<div id="addReviewModal" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+			<!-- Modal content-->
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Review {{name}}</h4>
+      			</div>
+      			<div class="modal-body">
+        			<form id="insertReviewForm" class="js-insert-review">
+        				{{> insertReviewForm}}
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+      				<div class="btn-group" role="group" aria-label="...">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="submit" class="btn btn-primary" id="submit" form="insertReviewForm">Add</button>
+	        		</div>
+      			</div>
+    		</div>
+		</div>
+	</div>
+</template>
+
+<template name="insertReviewForm">
+	<div class="form-group">
+       	<input class="form-control" type="hidden" id="tutorId" value="{{userId}}">
+    </div>
+    <!-- <div class="form-group">
+        <label for="title">
+        	Title <small>(Maximum number of characters: 83)</small>
+        </label>
+        <input class="form-control" type="text" id="title" maxlength="83">
+    </div> -->
+    <div class="form-group">
+        <label for="review">
+        	Review
+        </label>
+        <textarea class="form-control" rows="5" id="review"></textarea>
+    </div>
+</template>
 
 
 

@@ -193,7 +193,7 @@ Template.sendMessagefromTutor.events({
 
 });
 
-Template.tutorProfile.events({
+Template.tutor.events({
 
 	"click .js-upvote":function(event){
 		var tutorId = event.target.id.substring(1);
@@ -206,6 +206,35 @@ Template.tutorProfile.events({
 
 });
 
+Template.addReviewModal.events({
+
+	"submit .js-insert-review":function(event){
+		// event.preventDefault();
+		if(!Meteor.user()){
+			return;
+		}
+		var tutorId = event.target.tutorId.value;
+		var tutor = TutorProfiles.findOne({userId:tutorId});
+		if(!tutor){
+			return;
+		}
+		var userId = Meteor.user()._id;
+		if(userId == tutorId){
+			alert("Warning:You cannot review yourself!");
+			return;
+		}
+		// var title = event.target.title.value;
+		var review = event.target.review.value;
+		var reviewI = {
+			tutorId:tutorId,
+			// title:title,
+			review:review,
+			userId:userId
+		}
+		Meteor.call("addReview", reviewI);
+	}
+
+});
 
 
 
